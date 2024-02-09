@@ -1,0 +1,14 @@
+body {
+    font-family: 'Comic Sans MS';
+    background-color: hotpink;
+}
+
+#no {
+    margin-left: 15px;
+    background-color: red;
+    color: white;
+}
+
+#yes {
+    background-color: lime;
+}
