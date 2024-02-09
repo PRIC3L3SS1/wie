@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Valentine's Proposal</title>
+    <link rel="stylesheet" href="valentines.css" />
+</head>
+<body>
+    <p id="text">Do you wanna be my valentines?</p>
+    <div id="selection">
+        <button id="yes" onclick="yesClicked()">Yes</button>
+        <button id="no" onclick="noClicked()">No</button>
+    </div>
+    <p id="wee" style="display:none">omg YAY!!</p>
+    <img id="yay" src="https://media.tenor.com/KbZrzILhizkAAAAM/happy-happy-cat.gif" style="display:none"/>
+
+    <script>
+        const yesButton = document.getElementById("yes");
+        const noButton = document.getElementById("no")
+        const defaultWidth = "39px"
+        const defaultHeight = "26px"
+
+        let numberOfNoClicked = 0
+
+        yesButton.style.width = defaultWidth;
+        yesButton.style.height = defaultHeight;
+
+        function noClicked() {
+            numberOfNoClicked += 1
+            const currentWidth = yesButton.style.width;
+            const currentHeight = yesButton.style.height;
+            const sizeRegex = /\d+/g;
+            const newWidth = currentWidth.replace(sizeRegex, (match) => {
+                const originalNumber = parseFloat(match);
+                const newNumber = originalNumber * 1.3;
+                return newNumber.toFixed(0); // Adjust decimal places as needed
+            });
+
+            const newHeight = currentHeight.replace(sizeRegex, (match) => {
+                const originalNumber = parseFloat(match);
+                const newNumber = originalNumber * 1.3;
+                return newNumber.toFixed(0); // Adjust decimal places as needed
+            });
+
+            yesButton.style.width = newWidth;
+            yesButton.style.height = newHeight;
+
+            switch (numberOfNoClicked) {
+                case 1:
+                    noButton.textContent = "Are you sure?";
+                    break;
+                case 2:
+                    noButton.textContent = "Are you like 100% sure?";
+                    break;
+                case 3:
+                    let question = document.getElementById("selection").appendChild(document.createElement('p'));
+                    question.textContent = "Do you want to elaborate?";
+                    question.id = "question"
+                    let answer = document.getElementById("selection").appendChild(document.createElement('textarea'));
+                    answer.style.height = yesButton.style.height
+                    answer.id = "answer"
+                    answer.placeholder = "Please explain in a short 1000 - 2000 word response."
+                    noButton.textContent = "No";
+                    break;
+                case 4:
+                    document.getElementById("question").style.display = 'none'
+                    document.getElementById("answer").style.display = 'none'
+                    noButton.textContent = "okay it's fine";
+                    break;
+
+                case 5:
+                    noButton.textContent = "i'm fine";
+                    break;
+                case 6:
+                    noButton.textContent = "are you still like 1000% sure";
+                    break;
+                case 7:
+                    const randomX = Math.floor(Math.random() * (window.innerWidth - noButton.offsetWidth));
+                    const randomY = Math.floor(Math.random() * (window.innerHeight - noButton.offsetHeight));
+                    noButton.style.left = randomX + "px";
+                    noButton.style.top = randomY + "px";
+                    noButton.textContent = "Yes?";
+                    break;
+                case 8:
+                    noButton.style.display = 'none'
+                    yesButton.style.display = 'none'
+                    document.getElementById("text").style.display = 'none'
+                    document.getElementById("wee").innerText = "okay, that's fine have a nice day\n\n"
+                    document.getElementById("wee").style.display = 'block'
+                    break;
+            }
+        }
+
+        function yesClicked() {
+            document.getElementById("text").style.display = 'none'
+            document.getElementById("yes").style.display = 'none'
+            document.getElementById("no").style.display = 'none'
+            document.getElementById("wee").style.display = 'block'
+            document.getElementById("yay").style.display = 'block'
+        }
+    </script>
+
+</body>
+</html>
