@@ -13,6 +13,7 @@
     <meta property="og:site_name" content="wie valentine proposal">
     <meta name="theme-color" content="#FF69B4" />
     <link rel="stylesheet" href="valentines.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 </head>
 
     <p id="text">Do you wanna be my valentines?</p>
@@ -108,6 +109,37 @@
             document.getElementById("yay").style.display = 'block'
         }
     </script>
+
+    <script>
+         <script>
+        const defaults = {
+            spread: 360,
+            ticks: 100,
+            gravity: 0,
+            decay: 0.94,
+            startVelocity: 30,
+            shapes: ["heart"],
+            colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+        };
+
+        // Function to run confetti with custom settings
+        function runConfetti(particleCount, scalar) {
+            confetti({
+                ...defaults,
+                particleCount: particleCount,
+                scalar: scalar,
+            });
+        }
+
+        // Add event listener to the button
+        document.getElementById("yes").addEventListener("click", function() {
+            runConfetti(50, 2); // Example settings when the button is clicked
+            runConfetti(25, 3);
+            runConfetti(10, 4);
+        });
+    </script>
+    </script>
+    
 
 </body>
 </html>
